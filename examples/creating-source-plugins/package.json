@@ -10,5 +10,8 @@
     "example-site",
     "source-plugin"
   ],
-  "private": true
+  "private": true,
+  "resolutions": {
+    "graphql": "14.7.0"
+  }
 }
