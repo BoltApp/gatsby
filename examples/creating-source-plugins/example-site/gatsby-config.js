@@ -1,22 +1,17 @@
 /**
  * Configure your Gatsby site with this file.
  *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
+ * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
+/**
+ * @type {import('gatsby').GatsbyConfig}
+ */
 module.exports = {
   plugins: [
-    // loads the source-plugin
     {
-      resolve: `source-plugin`,
-      options: {
-        spaceId: "123",
-        preview: true,
-        cacheResponse: false,
-      },
+      resolve: '../source-plugin'
     },
-    // required to generate optimized images
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
+    'gatsby-theme-material-ui'
   ],
 }

@@ -5,10 +5,10 @@
   </a>
 </p>
 <h1 align="center">
-  Gatsby's hello-world starter
+  Gatsby's default starter
 </h1>
 
-Kick off your project with this hello-world boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
 
 _Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
 
@@ -16,11 +16,11 @@ _Have another more specific idea? You may want to check out our vibrant collecti
 
 1.  **Create a Gatsby site.**
 
-    Use the Gatsby CLI ([install instructions](https://www.gatsbyjs.com/docs/tutorial/part-0/#gatsby-cli)) to create a new site, specifying the hello-world starter.
+    Use the Gatsby CLI ([install instructions](https://www.gatsbyjs.com/docs/tutorial/part-0/#gatsby-cli)) to create a new site, specifying the default starter.
 
     ```shell
-    # create a new Gatsby site using the hello-world starter
-    gatsby new my-hello-world-starter https://github.com/gatsbyjs/gatsby-starter-hello-world
+    # create a new Gatsby site using the default starter
+    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
     ```
 
 1.  **Start developing.**
@@ -28,7 +28,7 @@ _Have another more specific idea? You may want to check out our vibrant collecti
     Navigate into your new site’s directory and start it up.
 
     ```shell
-    cd my-hello-world-starter/
+    cd my-default-starter/
     gatsby develop
     ```
 
@@ -38,13 +38,13 @@ _Have another more specific idea? You may want to check out our vibrant collecti
 
     Note: You'll also see a second link: `http://localhost:8000/___graphql`. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby Tutorial](https://www.gatsbyjs.com/docs/tutorial/part-4/#use-graphiql-to-explore-the-data-layer-and-write-graphql-queries).
 
-    Open the `my-hello-world-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
 
 ## 🚀 Quick start (Gatsby Cloud)
 
 Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
 
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-hello-world)
+[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-default)
 
 ## 🧐 What's inside?
 
@@ -97,30 +97,3 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 Gatsby Cloud is an end-to-end cloud platform specifically built for the Gatsby framework that combines a modern developer experience with an optimized, global edge network.
 
 <!-- AUTO-GENERATED-CONTENT:END -->
-
-## Work around
-Issues with
-```
-Missing onError handler for invocation 'running-page-queries', error was 'TypeError: rule is not a function'. Stacktrace was 'TypeError: rule is not a function
-    at /Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/graphql/validation/validate.js:69:12
-    at Array.map (<anonymous>)
-    at validate (/Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/graphql/validation/validate.js:68:53)
-    at GraphQLRunner.validate (/Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/gatsby/src/query/graphql-runner.ts:130:16)
-    at GraphQLRunner.query (/Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/gatsby/src/query/graphql-runner.ts:218:49)
-    at startQueryJob (/Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/gatsby/src/query/query-runner.ts:108:6)
-    at queryRunner (/Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/gatsby/src/query/query-runner.ts:140:20)
-    at worker (/Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/gatsby/src/query/index.ts:110:5)
-    at Object.push (/Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/fastq/queue.js:110:14)
-    at forEach (/Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/gatsby/src/query/index.ts:159:17)
-    at Array.forEach (<anonymous>)
-    at /Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/gatsby/src/query/index.ts:158:14
-    at new Promise (<anonymous>)
-    at processQueries (/Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/gatsby/src/query/index.ts:149:10)
-    at processPageQueries (/Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/gatsby/src/query/index.ts:299:34)
-    at runPageQueries (/Users/longyao/Workspace/gatsby/examples/creating-source-plugins/node_modules/gatsby/src/services/run-page-queries.ts:36:9)'
-
-```
-Run command
-```
-yarn add react-dom
-```

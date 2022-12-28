@@ -1,47 +1,33 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { styled } from '@mui/material/styles';
+import { Box, Grid, Paper } from "@mui/material";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 export default ({ data }) => (
-  <div
-    style={{
-      padding: 32,
-    }}
-  >
-    <h1>Posts</h1>
-    <section
-      style={{
-        display: `grid`,
-        gridTemplateColumns: `repeat( auto-fit, minmax(250px, 1fr) )`,
-        gridGap: 16,
-        justifyContent: "space-between",
-      }}
-    >
-      {data.allPost.nodes.map(post => (
-        <div
-          style={{
-            display: `flex`,
-            flexDirection: `column`,
-            justifyContent: `space-between`,
-            padding: 16,
-            border: `1px solid #ccc`,
-            borderRadius: 8,
-          }}
-        >
-          <h2>{post.slug}</h2>
-          <span>By: {post.author.name}</span>
-          <p>{post.description}</p>
-          <Img
-            fluid={post.remoteImage.childImageSharp.fluid}
-            alt={post.imgAlt}
-            style={{
-              maxHeight: 300,
-            }}
-          />
-        </div>
-      ))}
-    </section>
-  </div>
+  <>
+    <h1>Ecommerce Site Powered by Bolt</h1>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={3}>
+        {data.allPost.nodes.map(post => (
+          <Grid item xs={3}>
+            <Item>
+              <h2>{post.slug}</h2>
+              <span>By: {post.author.name}</span>
+              <p>{post.description}</p>
+            </Item>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  </>
 )
 
 export const query = graphql`
@@ -55,17 +41,7 @@ export const query = graphql`
         author {
           id
           name
-        }
-        slug
-        remoteImage {
-          id
-          childImageSharp {
-            id
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
+        }        
       }
     }
   }
