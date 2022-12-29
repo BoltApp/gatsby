@@ -1,26 +1,35 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Script } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
 
+const publishableKey = "5OWVUheleCaj.T4LcnlPkT4Ue.e93bda8a3ba796fed56d0fb0a8fe59585c9a434edef3b6e71af984ea315db3b6"
+const buttonUrlBase = "https://connect-staging.bolt.com"
 export default ({ data }) => (
   <Layout>
+    <Script
+      async
+      id="bolt-track"
+      type="text/javascript"
+      src="https://connect-staging.bolt.com/track.js"
+      data-publishable-key="5OWVUheleCaj.T4LcnlPkT4Ue.e93bda8a3ba796fed56d0fb0a8fe59585c9a434edef3b6e71af984ea315db3b6"
+    ></Script>
+    <Script
+      id="bolt-connect"
+      type="text/javascript"
+      src="https://connect-staging.bolt.com/connect.js"
+      data-publishable-key="5OWVUheleCaj.T4LcnlPkT4Ue.e93bda8a3ba796fed56d0fb0a8fe59585c9a434edef3b6e71af984ea315db3b6"
+    ></Script>
     <div className={styles.textCenter}>
       <StaticImage
-        src="../images/example.png"
+        src="../images/logo.png"
+        alt="Bolt Logo"
         loading="eager"
-        width={64}
-        quality={95}
         formats={["auto", "webp", "avif"]}
-        alt=""
-        style={{ marginBottom: `var(--space-3)` }}
       />
-      <h1>
-        Welcome to <b>Bolt</b>
-      </h1>
     </div>
     <ul className={styles.list}>
       {data.allProduct.nodes.map(product => (
@@ -29,12 +38,15 @@ export default ({ data }) => (
             className={styles.listItemLink}
             href={`${product.url}`}
           >
-            {product.name} ↗
+            {product.name}
           </a>
           {product.product_media.map(media => (
-            <img src={media.url}></img>
+            <img src={media.url} alt={media.url}></img>
           ))}
           <p className={styles.listItemDescription}>{product.description}</p>
+          <div data-tid="instant-bolt-checkout-button">
+            <object data={`${buttonUrlBase}/v1/checkout_button?publishable_key=${publishableKey}`} />
+          </div>
         </li>
       ))}
     </ul>
