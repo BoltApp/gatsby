@@ -7,6 +7,7 @@ import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
 
 const publishableKey = "5OWVUheleCaj.T4LcnlPkT4Ue.e93bda8a3ba796fed56d0fb0a8fe59585c9a434edef3b6e71af984ea315db3b6"
+const publisherKey = "b61b9342d84f5a7c9aeea9b09574d16c"
 const buttonUrlBase = "https://connect-staging.bolt.com"
 export default ({ data }) => (
   <Layout>
@@ -47,7 +48,7 @@ export default ({ data }) => (
           {product.product_prices.map(price => (
             <h2>${price.list_price/100}</h2>
           ))}
-          <a href={`${buttonUrlBase}/product_checkout.html?merchant_division_id=AHX6aVWANY_0&publisher_key=06af3ae7a5145505922be60482c5a71e&bolt_product_id=86396606-52e6-5743-a03f-1200cdd8b8c1`}>
+          <a href={`${buttonUrlBase}/product_checkout.html?merchant_division_id=${product.merchant_division_public_id}&publisher_key=${publisherKey}&bolt_product_id=${product.bolt_product_id}`}>
             <div data-tid="instant-bolt-checkout-button">
               <object data={`${buttonUrlBase}/v1/checkout_button?publishable_key=${publishableKey}`} />
             </div>
@@ -69,8 +70,10 @@ export const query = graphql`
   {
     allProduct {
       nodes {
+        bolt_product_id
         id
         name
+        merchant_division_public_id
         url
         description
         product_media {

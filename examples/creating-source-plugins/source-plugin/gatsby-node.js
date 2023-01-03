@@ -23,7 +23,7 @@ exports.sourceNodes = async ({
   const { data } = await client.query({
     query: gql`
       query {
-        products(where: {_and: {merchant_division_public_id: {_eq: "${pluginOptions.merchantPublicID}"}, product_type: {_eq: "simple"}}}) {
+        products(where: {_and: {merchant_division_public_id: {_eq: "${pluginOptions.merchantPublicID}"}}}) {
           bolt_product_id
           name
           merchant_division_public_id
