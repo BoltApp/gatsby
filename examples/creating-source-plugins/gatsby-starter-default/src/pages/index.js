@@ -44,6 +44,9 @@ export default ({ data }) => (
             <img src={media.url} alt={media.url}></img>
           ))}
           <p className={styles.listItemDescription}>{product.description}</p>
+          {product.product_prices.map(price => (
+            <h2>${price.list_price/100}</h2>
+          ))}
           <a href={`${buttonUrlBase}/product_checkout.html?merchant_division_id=AHX6aVWANY_0&publisher_key=06af3ae7a5145505922be60482c5a71e&bolt_product_id=86396606-52e6-5743-a03f-1200cdd8b8c1`}>
             <div data-tid="instant-bolt-checkout-button">
               <object data={`${buttonUrlBase}/v1/checkout_button?publishable_key=${publishableKey}`} />
@@ -72,6 +75,9 @@ export const query = graphql`
         description
         product_media {
           url
+        }
+        product_prices {
+          list_price
         }
       }
     }

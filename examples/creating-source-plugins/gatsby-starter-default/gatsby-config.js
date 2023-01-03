@@ -42,7 +42,7 @@ module.exports = {
     {
       resolve: '../source-plugin',
       options: {
-        merchantPublicID: "T4LcnlPkT4Ue", // T4LcnlPkT4Ue or UwOlJPVyzc95
+        merchantPublicID: "Abo1BwgVittV", // T4LcnlPkT4Ue or UwOlJPVyzc95
       },
     }
   ],

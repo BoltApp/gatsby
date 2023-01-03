@@ -24,12 +24,16 @@ exports.sourceNodes = async ({
     query: gql`
       query {
         products(where: {_and: {merchant_division_public_id: {_eq: "${pluginOptions.merchantPublicID}"}, product_type: {_eq: "simple"}}}) {
+          bolt_product_id
           name
           merchant_division_public_id
           id
           url
           description
           product_type
+          product_prices {
+            list_price
+          }
           product_media(where: {is_primary: {_eq: true}}) {
             url
           }
