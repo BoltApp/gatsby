@@ -48,7 +48,7 @@ export default ({ data }) => (
           {product.product_prices.map(price => (
             <h2>${price.list_price/100}</h2>
           ))}
-          <a href={`${buttonUrlBase}/product_checkout.html?merchant_division_id=${product.merchant_division_public_id}&publisher_key=${publisherKey}&bolt_product_id=${product.bolt_product_id}`}>
+          <a href={`${buttonUrlBase}/product_checkout.html?merchant_division_id=${product.merchant_division_public_id}&publisher_key=${publisherKey}&bolt_product_id=${product.children[0].id}`}>
             <div data-tid="instant-bolt-checkout-button">
               <object data={`${buttonUrlBase}/v1/checkout_button?publishable_key=${publishableKey}`} />
             </div>
@@ -68,7 +68,7 @@ export const Head = () => <Seo title="Home" />
 
 export const query = graphql`
   {
-    allProduct {
+    allProduct(filter: {parent_bolt_product_id: {eq: null}}) {
       nodes {
         bolt_product_id
         id
@@ -81,6 +81,9 @@ export const query = graphql`
         }
         product_prices {
           list_price
+        }
+        children {
+          id
         }
       }
     }
