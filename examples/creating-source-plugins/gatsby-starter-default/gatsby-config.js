@@ -44,6 +44,13 @@ module.exports = {
       options: {
         merchantPublicID: "Abo1BwgVittV", // T4LcnlPkT4Ue or UwOlJPVyzc95
       },
-    }
+    },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: "bolt-long-lambda-artifact-dev",
+        region: "us-west-2",
+      },
+    },
   ],
 }

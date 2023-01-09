@@ -8,6 +8,7 @@
     "gatsby": "^5.3.2",
     "gatsby-plugin-image": "^3.3.2",
     "gatsby-plugin-manifest": "^5.3.1",
+    "gatsby-plugin-s3": "^0.3.8",
     "gatsby-plugin-sharp": "^5.3.2",
     "gatsby-source-filesystem": "^5.3.1",
     "gatsby-transformer-sharp": "^5.3.1",
@@ -28,6 +29,7 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
+    "deploy": "gatsby-plugin-s3 deploy --yes",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repository": {
