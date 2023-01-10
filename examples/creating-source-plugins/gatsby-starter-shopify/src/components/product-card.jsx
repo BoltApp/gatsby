@@ -21,28 +21,23 @@ export function ProductCard({ product, eager }) {
 
   const price = formatPrice(
     "USD",
-    firstPrice.list_price
+    firstPrice.list_price / 100
   )
 
   const defaultImageHeight = 200
   const defaultImageWidth = 200
-  let storefrontImageData = {}
 
-  const hasImage = firstImage || Object.getOwnPropertyNames(storefrontImageData || {}).length
+  const hasImage = firstImage
 
   return (
     <Link
       className={productCardStyle}
-      aria-label={`View ${name} product page`}
+      aria-label={`View ${id} product page`}
     >
       {hasImage
         ? (
           <div className={productImageStyle} data-name="product-image-box">
-            <GatsbyImage
-              alt={firstImage?.altText ?? name}
-              image={firstImage?.gatsbyImageData ?? storefrontImageData}
-              loading={eager ? "eager" : "lazy"}
-            />
+            <img alt={id} src={firstImage?.url}/>
           </div>
         ) : (
           <div style={{ height: defaultImageHeight, width: defaultImageWidth }} />
