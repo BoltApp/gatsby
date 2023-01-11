@@ -1,25 +1,20 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { formatPrice } from "../utils/format-price"
 import {
   productCardStyle,
   productHeadingStyle,
   productImageStyle,
   productDetailsStyle,
-  productVendorStyle,
+  productPrice,
 } from "./product-card.module.css"
 import { formatName } from "../utils/format-name"
 import { selectImage } from "../utils/select-image"
-import { selectBoltProductID } from "../utils/select-bolt-id"
-
-const publisherKey = "b61b9342d84f5a7c9aeea9b09574d16c"
-const buttonUrlBase = "https://connect-staging.bolt.com"
 
 export function ProductCard({ product, eager }) {
   const {
     id,
     name,
-    description,
     product_prices: [firstPrice],
     product_media,
   } = product
@@ -30,8 +25,6 @@ export function ProductCard({ product, eager }) {
   )
 
   const defaultName = formatName(name)
-  const defaultDescription = formatName(description)
-  const boltProductID = selectBoltProductID(product)
 
   const defaultImageHeight = 200
   const defaultImageWidth = 200
@@ -39,10 +32,10 @@ export function ProductCard({ product, eager }) {
   const hasImage = selectImage(product_media, "medium")
 
   return (
-    <a
+    <Link
       className={productCardStyle}
       aria-label={`View ${id} product page`}
-      href={`${buttonUrlBase}/product_checkout.html?merchant_division_id=${product.merchant_division_public_id}&publisher_key=${publisherKey}&bolt_product_id=${boltProductID}`}
+      to={`/products/${id}`}
     >
       {hasImage
         ? (
@@ -57,10 +50,9 @@ export function ProductCard({ product, eager }) {
         <h2 as="h2" className={productHeadingStyle}>
           {defaultName}
         </h2>
-        <p className={productVendorStyle}> {defaultDescription} </p>
-        <div>{price}</div>
+        <div className={productPrice}>{price}</div>
       </div>
-    </a>
+    </Link>
   )
 }
 

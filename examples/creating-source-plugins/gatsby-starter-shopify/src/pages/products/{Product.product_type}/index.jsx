@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import { Layout } from "../../../components/layout"
 import { ProductListing } from "../../../components/product-listing"
 import { Seo } from "../../../components/seo"
-import slugify from "@sindresorhus/slugify"
 import { MoreButton } from "../../../components/more-button"
 import { title } from "../index.module.css"
 
@@ -16,7 +15,7 @@ export default function ProductTypeIndex({
       <h1 className={title}>{product_type}</h1>
       <ProductListing products={products.nodes} />
       {products.pageInfo.hasNextPage && (
-        <MoreButton to={`/search?p=${slugify(product_type)}#more`}>
+        <MoreButton to={`/search`}>
           More Products
         </MoreButton>
       )}
