@@ -1,4 +1,4 @@
 export const formatName = (name) => {
   const nameMap = JSON.parse(name);
-  return nameMap.default
+  return nameMap ? nameMap.default : ""
 }

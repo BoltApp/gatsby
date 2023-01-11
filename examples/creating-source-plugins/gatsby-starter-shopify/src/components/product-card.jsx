@@ -1,18 +1,17 @@
 import * as React from "react"
-import { graphql, Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { graphql } from "gatsby"
 import { formatPrice } from "../utils/format-price"
 import {
   productCardStyle,
   productHeadingStyle,
   productImageStyle,
   productDetailsStyle,
-  productPrice,
+  productVendorStyle,
 } from "./product-card.module.css"
 import { formatName } from "../utils/format-name"
 import { selectImage } from "../utils/select-image"
+import { selectBoltProductID } from "../utils/select-bolt-id"
 
-const publishableKey = "5OWVUheleCaj.T4LcnlPkT4Ue.e93bda8a3ba796fed56d0fb0a8fe59585c9a434edef3b6e71af984ea315db3b6"
 const publisherKey = "b61b9342d84f5a7c9aeea9b09574d16c"
 const buttonUrlBase = "https://connect-staging.bolt.com"
 
@@ -31,6 +30,8 @@ export function ProductCard({ product, eager }) {
   )
 
   const defaultName = formatName(name)
+  const defaultDescription = formatName(description)
+  const boltProductID = selectBoltProductID(product)
 
   const defaultImageHeight = 200
   const defaultImageWidth = 200
@@ -41,7 +42,7 @@ export function ProductCard({ product, eager }) {
     <a
       className={productCardStyle}
       aria-label={`View ${id} product page`}
-      href={`${buttonUrlBase}/product_checkout.html?merchant_division_id=${product.merchant_division_public_id}&publisher_key=${publisherKey}&bolt_product_id=${product.children[0].id}`}
+      href={`${buttonUrlBase}/product_checkout.html?merchant_division_id=${product.merchant_division_public_id}&publisher_key=${publisherKey}&bolt_product_id=${boltProductID}`}
     >
       {hasImage
         ? (
@@ -56,7 +57,8 @@ export function ProductCard({ product, eager }) {
         <h2 as="h2" className={productHeadingStyle}>
           {defaultName}
         </h2>
-        <div className={productPrice}>{price}</div>
+        <p className={productVendorStyle}> {defaultDescription} </p>
+        <div>{price}</div>
       </div>
     </a>
   )
