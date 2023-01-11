@@ -9,6 +9,11 @@ import {
   productDetailsStyle,
   productPrice,
 } from "./product-card.module.css"
+import { formatName } from "../utils/format-name"
+
+const publishableKey = "5OWVUheleCaj.T4LcnlPkT4Ue.e93bda8a3ba796fed56d0fb0a8fe59585c9a434edef3b6e71af984ea315db3b6"
+const publisherKey = "b61b9342d84f5a7c9aeea9b09574d16c"
+const buttonUrlBase = "https://connect-staging.bolt.com"
 
 export function ProductCard({ product, eager }) {
   const {
@@ -24,15 +29,18 @@ export function ProductCard({ product, eager }) {
     firstPrice.list_price / 100
   )
 
+  const defaultName = formatName(name)
+
   const defaultImageHeight = 200
   const defaultImageWidth = 200
 
   const hasImage = firstImage
 
   return (
-    <Link
+    <a
       className={productCardStyle}
       aria-label={`View ${id} product page`}
+      href={`${buttonUrlBase}/product_checkout.html?merchant_division_id=${product.merchant_division_public_id}&publisher_key=${publisherKey}&bolt_product_id=${product.children[0].id}`}
     >
       {hasImage
         ? (
@@ -45,11 +53,11 @@ export function ProductCard({ product, eager }) {
       }
       <div className={productDetailsStyle}>
         <h2 as="h2" className={productHeadingStyle}>
-          {name}
+          {defaultName}
         </h2>
         <div className={productPrice}>{price}</div>
       </div>
-    </Link>
+    </a>
   )
 }
 
