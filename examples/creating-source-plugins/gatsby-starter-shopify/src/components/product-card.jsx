@@ -10,6 +10,7 @@ import {
   productPrice,
 } from "./product-card.module.css"
 import { formatName } from "../utils/format-name"
+import { selectImage } from "../utils/select-image"
 
 const publishableKey = "5OWVUheleCaj.T4LcnlPkT4Ue.e93bda8a3ba796fed56d0fb0a8fe59585c9a434edef3b6e71af984ea315db3b6"
 const publisherKey = "b61b9342d84f5a7c9aeea9b09574d16c"
@@ -21,7 +22,7 @@ export function ProductCard({ product, eager }) {
     name,
     description,
     product_prices: [firstPrice],
-    product_media: [firstImage],
+    product_media,
   } = product
 
   const price = formatPrice(
@@ -34,7 +35,7 @@ export function ProductCard({ product, eager }) {
   const defaultImageHeight = 200
   const defaultImageWidth = 200
 
-  const hasImage = firstImage
+  const hasImage = selectImage(product_media, "medium")
 
   return (
     <a
@@ -45,7 +46,7 @@ export function ProductCard({ product, eager }) {
       {hasImage
         ? (
           <div className={productImageStyle} data-name="product-image-box">
-            <img alt={id} src={firstImage?.url}/>
+            <img alt={id} src={hasImage?.url}/>
           </div>
         ) : (
           <div style={{ height: defaultImageHeight, width: defaultImageWidth }} />
