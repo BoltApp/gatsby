@@ -12,6 +12,30 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type ProductPrice {
+      list_price: Int!
+    }
+    type ProductMedia {
+      url: String!
+    }
+    type AuthorJson implements Node @dontInfer {
+      bolt_product_id: String
+      parent_bolt_product_id: String!
+      name: String!
+      merchant_division_public_id: String!
+      url: String!
+      description: String!
+      product_type: String!
+      product_prices: [ProductPrice!]!
+      product_media: [ProductMedia!]!
+    }
+  `
+  createTypes(typeDefs)
+}
+
 exports.sourceNodes = async ({
   actions,
   createContentDigest,
