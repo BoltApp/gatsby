@@ -6,7 +6,7 @@ const POST_NODE_TYPE = `Product`
 
 const client = new ApolloClient({
   link: new HttpLink({
-      uri: "https://hasura.staging-bolt.me/v1/graphql", // or `https://gatsby-source-plugin-api.glitch.me/`
+      uri: "https://hasura.staging-bolt.me/v1/graphql",
       fetch,
     }),
   cache: new InMemoryCache(),
@@ -41,13 +41,22 @@ exports.sourceNodes = async ({
   createContentDigest,
   createNodeId,
   getNodesByType,
+  cache,
 }, pluginOptions) => {
   const { createNode } = actions
+
+  var lastFetched = await cache.get(`timestamp`)
+  var catalog = await cache.get(`catalog`);
+  if (!catalog) {
+    lastFetched = "1900-01-01" // set a init timestamp
+  }
+  var today = new Date();
+  const newTimestamp = today.toISOString()
 
   const { data } = await client.query({
     query: gql`
       query {
-        products(where: {_and: {merchant_division_public_id: {_eq: "${pluginOptions.merchantPublicID}"}}}) {
+        products(where: {_and: {merchant_division_public_id: {_eq: "${pluginOptions.merchantPublicID}"}, updated_at: {_gt: "${lastFetched}"}}}) {
           bolt_product_id
           parent_bolt_product_id
           name
@@ -80,6 +89,21 @@ exports.sourceNodes = async ({
     }
   })
 
+  if (catalog) {
+    catalog.forEach(product =>
+      createNode({
+        ...product,
+        id: product.bolt_product_id,
+        parent: product.parent_bolt_product_id,
+        children: productMap[product.bolt_product_id],
+        internal: {
+          type: POST_NODE_TYPE,
+          contentDigest: createContentDigest(product),
+        },
+      })
+    )
+  }
+
   data.products.forEach(product =>
     createNode({
       ...product,
@@ -92,6 +116,14 @@ exports.sourceNodes = async ({
       },
     })
   )
+
+  // set up caching
+  if (catalog) {
+    await cache.set(`catalog`, catalog.concat(data.products))
+  } else {
+    await cache.set(`catalog`, data.products)
+  }
+  await cache.set(`timestamp`, newTimestamp)
 
   return
 }
