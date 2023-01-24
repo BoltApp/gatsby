@@ -28,7 +28,7 @@ module.exports = {
       },
     },
     {
-      resolve: '../source-plugin',
+      resolve: '../product-catalog-plugin',
       options: {
         merchantPublicID: "Abo1BwgVittV", // T4LcnlPkT4Ue or UwOlJPVyzc95
       },
